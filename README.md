@@ -5,9 +5,17 @@ pg_ctl -D ~/postgres_data -l ~/logfile start
 createdb polardb_order
 
 #Submitting an Order
-curl http://localhost:9002/orders -d '{"isbn":"1234567890", "quantity":3}' -H "Content-Type: Application/json"
+curl http://localhost:9002/orders -d '{"isbn":"1234567891", "quantity":3}' -H "Content-Type: Application/json"
 
 http POST :9002/orders isbn=1234567890 quantity=3
 
 http POST :9002/orders isbn=1234567891 quantity=3
 
+#get orders
+curl http://localhost:9002/orders
+
+#Added Provider class: OrderService Method: publishOrderAcceptedEvent. 
+#Produces an event when the order is accepted.
+
+#Adder consumer class: OrderFunctions Method: dispatchOrder.
+#Updates the order status.
