@@ -19,3 +19,6 @@ curl http://localhost:9002/orders
 
 #Adder consumer class: OrderFunctions Method: dispatchOrder.
 #Updates the order status.
+
+#Create a JWt (ToDo)
+curl http://localhost:8080/realms/PolarBookshop/protocol/openid-connect/token -u edge-service:polar-keycloak-secret -H "Content-Type: application/x-www-form-urlencoded" -d "grant_type=password&username=isabelle&password=password"

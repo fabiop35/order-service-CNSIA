@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
+
 import com.cnsia.orderservice.order.domain.Order;
 import com.cnsia.orderservice.services.OrderService;
 
@@ -25,8 +28,8 @@ public class OrderController {
 	}
 
 	@GetMapping
-	public Flux<Order> getAllOrders() {
-		return orderService.getAllOrders();
+	public Flux<Order> getAllOrders(@AuthenticationPrincipal Jwt jwt) {
+		return orderService.getAllOrders(jwt.getSubject());
 	}
 
 	@PostMapping
